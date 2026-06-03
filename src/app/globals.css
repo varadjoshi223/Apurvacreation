@@ -1,0 +1,372 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F0EBE1;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8D5A3;
+  --color-gold-dark: #B8973E;
+  --color-text: #1A1A1A;
+  --color-text-light: #6B6B6B;
+  --color-border: #E5DDD0;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Montserrat', sans-serif;
+}
+
+/* ===== Base Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+/* Lenis overrides */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: #FAF7F2;
+  color: #1A1A1A;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+::selection {
+  background: rgba(201, 168, 76, 0.2);
+  color: #1A1A1A;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #E5DDD0;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A84C;
+}
+
+/* ===== Page Loader ===== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #FAF7F2;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-monogram {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #C9A84C;
+  letter-spacing: 4px;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  color: #1A1A1A;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* ===== Luxury Card ===== */
+.luxury-card {
+  background: #FAF7F2;
+  border: 1px solid #E5DDD0;
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* ===== Gold Underline ===== */
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: #C9A84C;
+  transition: width 0.5s ease;
+}
+
+.gold-underline:hover::after {
+  width: 100%;
+}
+
+/* ===== Divider ===== */
+.gold-divider {
+  width: 60px;
+  height: 1.5px;
+  background: #C9A84C;
+  margin: 0 auto;
+}
+
+/* ===== Glow Input (Luxury) ===== */
+.luxury-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #E5DDD0;
+  padding: 14px 0;
+  color: #1A1A1A;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  outline: none;
+  width: 100%;
+  border-radius: 0;
+}
+
+.luxury-input:focus {
+  border-bottom-color: #C9A84C;
+}
+
+.luxury-input::placeholder {
+  color: #B5B0A6;
+}
+
+/* ===== Marquee ===== */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+/* ===== Floating Shapes ===== */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -20px) rotate(45deg); }
+  50% { transform: translate(-10px, 20px) rotate(90deg); }
+  75% { transform: translate(20px, 10px) rotate(135deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-25px, 15px) rotate(60deg); }
+  66% { transform: translate(15px, -25px) rotate(120deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(15px, -15px) scale(1.15); }
+}
+
+.floating-shape {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.12;
+  color: #C9A84C;
+  z-index: 0;
+}
+
+.floating-shape-1 {
+  animation: float1 20s ease-in-out infinite;
+}
+
+.floating-shape-2 {
+  animation: float2 15s ease-in-out infinite;
+}
+
+.floating-shape-3 {
+  animation: float3 12s ease-in-out infinite;
+}
+
+/* ===== Horizontal Scroll Section ===== */
+.hscroll-section {
+  position: relative;
+}
+
+.hscroll-card {
+  will-change: transform;
+}
+
+/* ===== Text Reveal ===== */
+.text-reveal-container {
+  overflow: hidden;
+}
+
+.text-reveal-fragment {
+  will-change: transform, opacity;
+}
+
+/* ===== Parallax Image Container ===== */
+.parallax-img-container {
+  overflow: hidden;
+  will-change: transform;
+}
+
+.parallax-img-container img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.parallax-img-container:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== Stagger Reveal (used by GSAP) ===== */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stagger-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  /* Mobile adjustments */
+  .hscroll-section {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ===== Filter Tab ===== */
+.filter-tab {
+  position: relative;
+  color: #6B6B6B;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+}
+
+.filter-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #C9A84C;
+  transition: width 0.3s ease;
+}
+
+.filter-tab.active {
+  color: #1A1A1A;
+}
+
+.filter-tab.active::after,
+.filter-tab:hover::after {
+  width: 100%;
+}
+
+/* ===== Lightbox ===== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(250, 247, 242, 0.95);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+/* ===== Nav link underline ===== */
+.nav-link {
+  position: relative;
+  color: #6B6B6B;
+  transition: color 0.3s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C9A84C;
+  transition: width 0.4s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #1A1A1A;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ===== Scroll-linked parallax sections ===== */
+.section-parallax {
+  will-change: transform;
+}
