@@ -198,7 +198,7 @@ function StrokeTextAnimation({
 }
 
 const serviceNames = [
-  'Book Cover Design++',
+  'Book Cover Design',
   'Banner Design',
   'Logo Design',
   'Invitation Design',
